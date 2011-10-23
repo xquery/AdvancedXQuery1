@@ -1,0 +1,22 @@
+<build>
+    <task id="house">
+	   <depends id="roof"/>
+       <depends id="second-floor"/>
+       <depends id="first-floor"/>
+       <depends id="basement"/>
+    </task>
+    <task id="first-floor">
+       <depends  id="basement"/>
+    </task>
+    <task id="roof">
+       <depends id="second-floor"/>
+       <depends id="basement"/>
+       <depends id="first-floor"/>
+    </task>
+    <task id="basement"/>	
+    <task id="second-floor">
+       <depends  id="basement"/>
+       <depends  id="first-floor"/>
+    </task>
+</build>
+	

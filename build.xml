@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!-- Advancing with XQuery: Application Idioms                     -->
+<!-- Author: James Fuller / Webcomposite s.r.o.                    -->
+<!-- Email/WWW: jim.fuller@ruminate.co.uk /  www.webcomposite.com  -->
+<!-- ============================================================= -->
+<!--    (C) Copyright James Fuller 2008 - All Rights Reserved.     -->
+<!--  use the -debug flag for more information when running ant  //-->
+<project name="advancingwithxquery1" basedir="." default="run">
+	<description>source code runner</description>
+	<!-- ===================================================== -->
+	<!-- example Local:Add function                            -->
+	<!-- ===================================================== -->
+	<target name="exampleSimple" description="simple example">
+		<xquery-saxon dest="result/saxon-example.out" query="xquery/example.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Random Function                               -->
+	<!-- ===================================================== -->
+	<target name="exampleRandom" description="demonstrate how to make Xquery cross platform">
+		<xquery-saxon dest="result/saxon-random-function.out" query="xquery/random-example.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Local:Add function                            -->
+	<!-- ===================================================== -->
+	<target name="exampleQuine" description="simple example of self reproducing output">
+		<xquery-saxon dest="result/saxon-quine.out" query="xquery/quine.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Unit Tests                                    -->
+	<!-- ===================================================== -->
+	<target name="exampleUnitTest" description="demonstrate unit tests in xquery">
+		<xquery-saxon dest="result/saxon-unit-test.out" query="xquery/unit-test-example.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Assertions                                    -->
+	<!-- ===================================================== -->
+	<target name="exampleAssertion" description="demonstrate assertions in xquery">
+		<xquery-saxon dest="result/saxon-assertions.out" query="xquery/assertions.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Factorial                                     -->
+	<!-- ===================================================== -->
+	<target name="exampleFactorial" description="demonstrate recursion in XQuery via factorial function">
+		<xquery-saxon dest="result/saxon-factorial.out" query="xquery/factorial.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Treewalker 1                                  -->
+	<!-- ===================================================== -->
+	<target name="exampleTreewalker1" description="demonstrate treewalker1 recursive function">
+		<xquery-saxon dest="result/saxon-treewalker1.out" query="xquery/treewalker1.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Treewalker 2                                  -->
+	<!-- ===================================================== -->
+	<target name="exampleTreewalker2" description="demonstrate treewalker2 recursive function">
+		<xquery-saxon dest="result/saxon-treewalker2.out" query="xquery/treewalker2.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Sorting 1                                     -->
+	<!-- ===================================================== -->
+	<target name="exampleSorting1" description="demonstrate topological sorting in xquery">
+		<xquery-saxon dest="result/saxon-sort.out" query="xquery/sorting.xq" input="file:xml/sort1.xml"/>
+		<echo file="result/saxon-sort.out"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Sorting 2                                     -->
+	<!-- ===================================================== -->
+	<target name="exampleSorting2" description="demonstrate topological sorting in xquery">
+		<xquery-saxon dest="result/saxon-sort.out" query="xquery/sorting.xq" input="file:xml/sort2.xml"/>
+		<echo file="result/saxon-sort.out"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Treewalker 3                                  -->
+	<!-- ===================================================== -->
+	<target name="exampleTreewalker3" description="demonstrate higher order functions in saxon">
+		<xquery-saxon dest="result/saxon-treewalker3.out" query="xquery/treewalker3.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Map                                           -->
+	<!-- ===================================================== -->
+	<target name="exampleMap" description="demonstrate higher order functions in saxon">
+		<xquery-saxon dest="result/saxon-map.out" query="xquery/map.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- example Filter                                        -->
+	<!-- ===================================================== -->
+	<target name="exampleFilter" description="demonstrate higher order functions in saxon">
+		<xquery-saxon dest="result/saxon-filter.out" query="xquery/filter.xq" input="file:xml/test.xml"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- Run Target                                            -->
+	<!-- ===================================================== -->
+	<target name="run" depends="clean,checkSaxon,exampleAssertion,exampleFactorial,exampleFilter,exampleMap,exampleQuine,exampleRandom,exampleSimple,exampleSorting1,exampleSorting2,exampleTreewalker1,exampleTreewalker2,exampleTreewalker3,exampleUnitTest" description="Run all Ant example Targets">
+		<echo message="All Advancing with XQuery examples evaluated"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- Clean Target                                          -->
+	<!-- ===================================================== -->
+	<target name="clean">
+		<delete dir="result"/>
+		<mkdir dir="result"/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- checkSaxon Target                                     -->
+	<!-- ===================================================== -->
+	<target name="checkSaxon" description="checks if saxon xquery is available and installed">
+		<xquery-saxon dest="result/saxon-check.out" query="xquery/checkenv.xq" input="xml/test.xml"/>
+		<echo message="Saxon is successfully running on this machine."/>
+	</target>
+	<!-- ===================================================== -->
+	<!-- properties and macrodefs                              -->
+	<!-- ===================================================== -->
+	<!--  IMPORTANT: please set location of saxon and name of saxon jar //-->
+	<property name="saxon.lib" location="lib/saxonsa9"/>
+	<!--  saxon  macrodef//-->
+	<macrodef name="xquery-saxon">
+		<attribute name="dest"/>
+		<attribute name="input"/>
+		<attribute name="query"/>
+		<sequential>
+			<java classname="net.sf.saxon.Query" fork="true" failonerror="false" maxmemory="256m" output="@{dest}/">
+				<arg line="-sa -s @{input} @{query} "/>
+				<classpath>
+					<pathelement location="${saxon.lib}"/>
+					<fileset dir="${saxon.lib}">
+						<include name="*.jar"/>
+					</fileset>
+				</classpath>
+			</java>
+		</sequential>
+	</macrodef>
+</project>

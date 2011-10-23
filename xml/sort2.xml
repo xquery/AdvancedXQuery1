@@ -1,0 +1,46 @@
+<book lang="en">
+  <title>Some Document</title>
+
+    <section id="about-the-house">
+      <title>The Big House Project</title>
+      <para>Cras lobortis. Aenean quam. Sed imperdiet tempor augue. Curabitur augue ligula, sodales quis, venenatis quis, commodo sed, nisi. Quisque ut quam. Donec ornare felis sed purus. In hac habitasse platea dictumst. Phasellus molestie blandit sem. Aliquam ultrices, diam quis rutrum hendrerit, ligula dolor sagittis arcu, nec viverra justo odio vel mi. Nulla quis nisi. Nulla eget sapien. Aliquam mauris ante, gravida sed, imperdiet a, tempor in, purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed pretium nunc ultrices ante. Suspendisse potenti. Nullam at pede.
+
+    <task id="house">
+	   <depends id="roof"/>
+       <depends id="second-floor"/>
+       <depends id="first-floor"/>
+       <depends id="basement"/>
+    </task>
+	Nullam eget elit vel ante elementum pellentesque. Pellentesque tincidunt tortor at lectus. Suspendisse potenti. Maecenas tortor tortor, lacinia ac, tincidunt at, sodales eu, sem. Vestibulum feugiat dapibus sem. Sed at mauris vel metus commodo adipiscing. Integer id orci. In hac habitasse platea dictumst. Etiam felis. Etiam quis tortor ut nunc volutpat blandit. Nunc ultricies libero non ligula. Nam at justo. Vivamus convallis dui quis erat.</para>
+
+	</section>
+
+    <section id="about-the-house">
+      <title>The Big House Project</title>
+    <task id="basement"/>	
+
+      <para>Cras lobortis. Aenean quam. Sed imperdiet tempor augue. Curabitur augue ligula, sodales quis, venenatis quis, commodo sed, nisi. Quisque ut quam. Donec ornare felis sed purus. In hac habitasse platea dictumst. Phasellus molestie blandit sem. Aliquam ultrices, diam quis rutrum hendrerit, ligula dolor sagittis arcu, nec viverra justo odio vel mi. Nulla quis nisi. Nulla eget sapien. Aliquam mauris ante, gravida sed, imperdiet a, tempor in, purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed pretium nunc ultrices ante. Suspendisse potenti. Nullam at pede.
+
+    <task id="first-floor">
+       <depends  id="basement"/>
+    </task>
+
+<para> We can even nest things a bit
+	
+    <task id="roof">
+       <depends id="second-floor"/>
+       <depends id="basement"/>
+       <depends id="first-floor"/>
+    </task>
+</para>
+
+	Nullam eget elit vel ante elementum pellentesque. Pellentesque tincidunt tortor at lectus. Suspendisse potenti. Maecenas tortor tortor, lacinia ac, tincidunt at, sodales eu, sem. Vestibulum feugiat dapibus sem. Sed at mauris vel metus commodo adipiscing. Integer id orci. In hac habitasse platea dictumst. Etiam felis. Etiam quis tortor ut nunc volutpat blandit. Nunc ultricies libero non ligula. Nam at justo. Vivamus convallis dui quis erat.</para>
+
+    <task id="second-floor">
+       <depends  id="basement"/>
+       <depends  id="first-floor"/>
+    </task>
+
+	</section>
+
+</book>

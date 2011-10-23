@@ -1,0 +1,9 @@
+download Michael Kay's XSLT and XQUERY processor saxon from http://www.saxonica.com
+
+IMPORTANT: You need the SA version to run all examples, of which Michael Kay provides
+a 30 day trial version of.
+
+Please install in the lib directory then amend ../build.xml saxon.lib property to reflect 
+this directory path.
+
+NOTE: Run ant target checkSaxon to see if everything is working well.
