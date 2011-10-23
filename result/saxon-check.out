@@ -1,8 +1,0 @@
-License file saxon-license.lic not found. Running in non-schema-aware mode
-java.lang.RuntimeException: License file saxon-license.lic not found
-	at com.saxonica.validate.JavaVerifier.loadLicense(JavaVerifier.java:48)
-	at com.saxonica.validate.PlatformVerifier.displayLicenseMessage(PlatformVerifier.java:80)
-	at com.saxonica.validate.SchemaAwareConfiguration.displayLicenseMessage(SchemaAwareConfiguration.java:188)
-	at net.sf.saxon.Query.doQuery(Query.java:147)
-	at net.sf.saxon.Query.main(Query.java:107)
-Fatal error during query: java.lang.RuntimeException: License file saxon-license.lic not found
